@@ -2,3 +2,38 @@ SUPER LOTTO NUMBER
 
 2026.05.30 : FIRST CREATED.
 
+
+C:\Projects\lotto>git init
+Initialized empty Git repository in C:/Projects/lotto/.git/
+
+
+C:\Projects\lotto>git config --global user.name "lookupheaven"
+
+C:\Projects\lotto>git config --global user.email "lookupheaven@gmail.com"
+
+C:\Projects\lotto>git config --global core.autocrlf true
+
+C:\Projects\lotto>git config --global --list
+user.email=lookupheaven@gmail.com
+user.name=lookupheaven
+core.autocrlf=true
+
+
+**** .gitignore 생성 
+
+C:\Projects\lotto>git add .
+
+C:\Projects\lotto>git commit -m "FIRST CREATED. 2026.05.30 / NOV19"   
+
+
+**** GITHUB 접속 REPOSITORY 생성 
+
+
+C:\Projects\lotto>git remote add origin https://github.com/lookupheaven/lotto.git
+
+C:\Projects\lotto>git branch -M main
+
+C:\Projects\lotto>git push -u origin main
+
+
+-----------------------------------
