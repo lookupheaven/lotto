@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>최첨단 로또번호</title>
+  <title>SUPER LOTTO NUMBER</title>
   <style>
     * {
       margin: 0;
@@ -315,19 +315,23 @@
 
     .history-balls {
       display: flex;
-      gap: clamp(6px, 1.5vw, 10px);
-      flex-wrap: wrap;
+      gap: 5px;
+      flex-wrap: nowrap;   /* 절대 줄바꿈 없음 */
       align-items: center;
+      flex: 1;             /* history-item 남은 공간 모두 사용 */
+      min-width: 0;
     }
 
     .mini-ball {
-      width: clamp(36px, 7.5vw, 46px);
-      height: clamp(36px, 7.5vw, 46px);
+      flex: 1 1 0;         /* 6개가 공간을 균등 분배 */
+      min-width: 0;
+      max-width: 44px;     /* 데스크탑에서 너무 커지지 않도록 */
+      aspect-ratio: 1 / 1; /* 항상 정원 유지 */
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: clamp(0.72rem, 1.8vw, 0.9rem);
+      font-size: clamp(0.6rem, 2.2vw, 0.88rem);
       font-weight: 900;
       box-shadow: 0 3px 10px rgba(0,0,0,0.45), inset 0 2px 5px rgba(255,255,255,0.3);
       position: relative;
@@ -421,7 +425,8 @@
 
   <div class="header">
     <h1 class="title">SUPER LOTTO NUMBER</h1>
-    <p class="subtitle">최고의 숫자를 그대에게 &middot; LOTTO 6/45</p>
+    <p class="subtitle">LOTTO 6/45</p>
+    <p class="subtitle">algorithm 26</p>
   </div>
 
   <div class="card">
@@ -450,8 +455,7 @@
   </div>
 
   <div class="history-section" id="historySection" style="display:none;">
-    <div class="history-title">&#9685; 이전 번호 기록</div>
-    <div class="history-list" id="historyList"></div>
+<div class="history-list" id="historyList"></div>
   </div>
 
   <script>

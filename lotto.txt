@@ -36,4 +36,7 @@ C:\Projects\lotto>git branch -M main
 C:\Projects\lotto>git push -u origin main
 
 
+C:\Projects\lotto>git add .
+C:\Projects\lotto>git commit -m "lotte.txt update"
+C:\Projects\lotto>git push origin main
 -----------------------------------
