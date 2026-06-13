@@ -418,6 +418,17 @@
     .legend-dot.gray   { background: #AAAAAA; }
     .legend-dot.green  { background: #B0D840; }
 
+    /* ── 푸터 ── */
+    .site-footer {
+      width: 100%;
+      text-align: center;
+      padding: 8px 0 clamp(8px, 2vw, 14px);
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, 0.55);
+      flex-shrink: 0;
+    }
+
     /* ── 태블릿 / PC 추가 여백 ── */
     @media (min-width: 768px) {
       body { justify-content: center; }
@@ -541,5 +552,7 @@
       }, 6 * 130 + 600);
     }
   </script>
+
+  <footer class="site-footer">lotto.itut.net</footer>
 </body>
 </html>
