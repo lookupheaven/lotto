@@ -4,6 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>LOTTO SUPER NUMBER</title>
+
+  <!-- 브라우저 탭 아이콘 (SVG) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><radialGradient id='g' cx='38%25' cy='30%25' r='68%25'><stop offset='0%25' stop-color='%23ffe566'/><stop offset='45%25' stop-color='%23FBC400'/><stop offset='100%25' stop-color='%239a6200'/></radialGradient></defs><circle cx='32' cy='32' r='30' fill='url(%23g)'/><ellipse cx='22' cy='19' rx='9' ry='5' fill='rgba(255,255,255,0.42)' transform='rotate(-30 22 19)'/><text x='32' y='42' text-anchor='middle' font-size='26' font-weight='900' font-family='Arial' fill='%233b2000'>★</text></svg>">
+
+  <!-- iOS 홈화면 아이콘 (canvas로 생성) -->
+  <link rel="apple-touch-icon" id="apple-touch-icon" sizes="180x180">
+
+  <!-- PWA / Android 홈화면 -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="LOTTO">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#FBC400">
   <style>
     * {
       margin: 0;
@@ -579,6 +592,47 @@
 
     // 초기 ? 플레이스홀더 표시
     renderPlaceholder();
+
+    // ── 홈화면 아이콘 생성 (iOS apple-touch-icon / Android) ──
+    (function () {
+      const S = 180;
+      const c = document.createElement('canvas');
+      c.width = c.height = S;
+      const ctx = c.getContext('2d');
+
+      // 어두운 배경
+      ctx.fillStyle = '#0d0b1e';
+      ctx.fillRect(0, 0, S, S);
+
+      // 골드 볼 그라디언트
+      const grd = ctx.createRadialGradient(68, 56, 4, 92, 95, 78);
+      grd.addColorStop(0,    '#ffe566');
+      grd.addColorStop(0.42, '#FBC400');
+      grd.addColorStop(1,    '#9a6200');
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.arc(92, 95, 76, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 광택 하이라이트
+      ctx.save();
+      ctx.globalAlpha = 0.42;
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.ellipse(66, 52, 22, 13, -0.42, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      // 중앙 별 심볼
+      ctx.fillStyle = '#3b2000';
+      ctx.font = '900 66px Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('★', 92, 100);
+
+      // apple-touch-icon 에 적용
+      document.getElementById('apple-touch-icon').href = c.toDataURL('image/png');
+    })();
   </script>
 
   <footer class="site-footer">lotto.itut.net</footer>
