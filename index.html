@@ -123,6 +123,18 @@
       animation: ballPop 0.55s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
     }
 
+    /* 초기 ? 플레이스홀더 볼 */
+    .ball.placeholder {
+      background: radial-gradient(circle at 38% 30%, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+      border: 2px dashed rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.35);
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      box-shadow: none;
+      opacity: 1;
+      transform: none;
+    }
+    .ball.placeholder::before { display: none; }
+
     @keyframes ballPop {
       0%   { opacity: 0; transform: scale(0.2) rotate(-40deg) translateY(-30px); }
       55%  { opacity: 1; transform: scale(1.18) rotate(6deg) translateY(2px); }
@@ -267,8 +279,9 @@
       overflow-y: auto;
       display: flex;
       flex-direction: column;
+      align-items: center;   /* 아이템 가운데 정렬 */
       gap: 10px;
-      padding-right: 4px;   /* 스크롤바 공간 */
+      padding-right: 4px;
       padding-bottom: 4px;
     }
 
@@ -295,6 +308,7 @@
     }
 
     .history-item {
+      width: 100%;
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 16px;
@@ -492,6 +506,17 @@
       return pool.slice(0, 6).sort((a, b) => a - b);
     }
 
+    function renderPlaceholder() {
+      const container = document.getElementById('balls');
+      container.innerHTML = '';
+      for (let i = 0; i < 6; i++) {
+        const ball = document.createElement('div');
+        ball.className = 'ball placeholder show';
+        ball.textContent = '?';
+        container.appendChild(ball);
+      }
+    }
+
     function renderBalls(numbers) {
       const container = document.getElementById('balls');
       container.innerHTML = '';
@@ -534,7 +559,7 @@
         list.appendChild(item);
       });
 
-      list.scrollTop = 0; // 새 항목 추가 시 맨 위로
+      list.scrollTop = 0;
     }
 
     function generate() {
@@ -551,6 +576,9 @@
         btn.disabled = false;
       }, 6 * 130 + 600);
     }
+
+    // 초기 ? 플레이스홀더 표시
+    renderPlaceholder();
   </script>
 
   <footer class="site-footer">lotto.itut.net</footer>
