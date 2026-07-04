@@ -154,3 +154,9 @@ temp/
 *.rej
 .turbo/
 .parcel-cache/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
