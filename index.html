@@ -672,15 +672,18 @@
     function shareNumbers() {
       if (!lastNumbers) return;
 
-      const nums = lastNumbers.join('  ');
-      const url  = 'https://lotto.itut.net';
-      const text = `🎱 LOTTO SUPER NUMBER\n\n로또번호: ${nums}\n\n최고의 알고리즘이 만든 로또번호를 만나보세요!\n${url}`;
+      const nums  = lastNumbers.join('  ');
+      const url   = 'https://lotto.itut.net';
+      const title = 'LOTTO SUPER NUMBER';
+      // 모바일 공유: title·url은 별도 파라미터로 전달 → text에 중복 제거
+      const shareText = `🎱 로또번호: ${nums}\n\n최고의 알고리즘이 만든 로또번호를 만나보세요!`;
+      // PC 클립보드: 모든 내용을 하나의 텍스트로
+      const clipText  = `🎱 LOTTO SUPER NUMBER\n\n로또번호: ${nums}\n\n최고의 알고리즘이 만든 로또번호를 만나보세요!\n${url}`;
 
       if (navigator.share) {
-        navigator.share({ title: 'LOTTO SUPER NUMBER', text, url })
-          .catch(() => {});
+        navigator.share({ title, text: shareText, url }).catch(() => {});
       } else {
-        navigator.clipboard.writeText(text).then(() => showToast());
+        navigator.clipboard.writeText(clipText).then(() => showToast());
       }
     }
 
